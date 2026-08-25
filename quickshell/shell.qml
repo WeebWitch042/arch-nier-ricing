@@ -141,15 +141,4 @@ ShellRoot {
         }
     }
 
-    // ── COMPANIONS ──
-    Variants {
-        model:Settings.companionsEnabled ? Quickshell.screens : []
-        PanelWindow {
-            required property var modelData;screen:modelData
-            anchors.bottom:true;anchors.right:true;margins.right:Settings.companionsMarginRight
-            exclusionMode:ExclusionMode.Ignore;color:"transparent"
-            implicitWidth:Settings.companionsSpriteSize+58;implicitHeight:compItem.implicitHeight
-            Companions{id:compItem;anchors.fill:parent}
-        }
-    }
 }
