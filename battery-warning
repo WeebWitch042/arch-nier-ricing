@@ -1,0 +1,29 @@
+#!/bin/bash
+
+BATTERY_PATH="/sys/class/power_supply/BAT0"
+
+if [ ! -d "$BATTERY_PATH" ]; then
+    exit 0
+fi
+
+
+capacity=$(cat "$BATTERY_PATH/capacity")
+status=$(cat "$BATTERY_PATH/status")
+
+# Battery critically low
+if [ "$capacity" -lt 20 ] && [ "$status" = "Discharging" ]; then
+    notify-send \
+        -u critical \
+        -i battery-caution \
+        "🔋 Low battery!" \
+        "Battery is at ${capacity}%. Plug in your charger!"
+fi
+
+# Battery full while charging
+if [ "$capacity" -ge 95 ] && [ "$status" = "Charging" ]; then
+    notify-send \
+        -u critical \
+        -i battery-full-charging \
+        "🔋 Unplug your charger!" \
+        "Battery is at ${capacity}%. Unplug the charger."
+fi
