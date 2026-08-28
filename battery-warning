@@ -1,5 +1,9 @@
 #!/bin/bash
 
+export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+export DBUS_SESSION_BUSADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
+
+
 BATTERY_PATH="/sys/class/power_supply/BAT0"
 
 if [ ! -d "$BATTERY_PATH" ]; then
