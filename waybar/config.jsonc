@@ -12,6 +12,8 @@
   ],
   "modules-right": [
     "custom/pomodoro",
+    "battery",
+    "custom/fcitx5",
     "cpu",
     "memory",
     "network",
@@ -65,6 +67,13 @@
     "format": "{}"
   },
 
+"custom/fcitx5":{
+   "exec":"fcitx5-remote -n",
+   "interval": 1,
+   "format": "LANG:{}",
+   "tooltip": false,
+},
+
   "custom/pomodoro": {
     "exec": "~/.config/waybar/scripts/pomodoro.sh",
     "interval": 1,
@@ -75,5 +84,15 @@
   "custom/power": {
     "format": "⏻",
     "on-click": "sh -c 'hyprlock'"
-  }
+  },
+  "battery": {
+     "states": {
+     "warning": 30,
+     "critical": 20
+    },
+    "format": "Batt {capacity}%",
+    "format-charging": "Chg {capacity}%",
+    "format-plugged": "Plug {capacity}%",
+    "format-alt": "{time} {capacity}%"
+  },
 }
